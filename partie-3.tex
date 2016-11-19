@@ -1,0 +1,167 @@
+\paragraph{Question 3.1}
+Si on compare deux s\'equences de longeurs $d$ identiques (pire cas),
+les algorithmes des parties pr\'ec\'edentes ont besoins \`a une
+constante pr\^et (1 octet) de $d^2$ espace m\'emoire que l'on note
+$T_{mem}$, soit $d=\sqrt{T_{mem}}$. Le tableau ci-dessous nous donne
+quelques applications num\'eriques.
+\begin{table*}[h]
+  \centering
+  \begin{tabular}{rc|c|c}
+    $T_{mem}=$&8Go&16Go&32Go\\
+    \hline
+    $d\approx$&89K&126K&179K
+  \end{tabular}
+\end{table*}
+
+\paragraph{Question 3.2}
+On convient que l'on dispose d'un algorithme \verb'P(i,j)', cachant
+une structure de donn\'ees sp\'ecifique, donnant les p\'enalit\'es de
+correspondances $\delta_{x_iy_j}$ tel qu'en complexit\'e spatiale, il
+ne d\'epend que de la taille de la taille des alphabets utilis\'es
+pour coder les s\'equences $X=(x_i)_{0\leq i\leq m}$ et
+$Y=(y_j)_{0\leq j\leq n}$ que l'on souhaite comparer. Entre autre on
+ne stocke pas les p\'enalit\'es de correspondances nulles.\\\\
+Pour \verb'COUT2', on est toujours sur une approche type programmation
+dynamique : le calcul de $F(i,j)$ par l'algorithme auxiliaire
+\verb'MEMO-COUT2' ne se fait que s'il n'a pas d\'ej\`a \'et\'e fait,
+l'argument \verb'l' qui est pass\'ee en argument indique laquelle des
+deux lignes $i-1$ (\verb'l=0') ou $i$ (\verb'l=1' par exemple) est
+n\'ecessaire pour le calcul de $F(i,j)$.\\\\
+L'algorithme auxiliaire \verb'MAJ-MEMO', auqel on passe en argument
+des r\'ef\'erences aux tableaux de m\'emo\"isation, fait la transition
+avec la paire de lignes suivante.
+\begin{verbatim}
+MAJ-MEMO(T0, T1, i)
+  T0 <- T1
+  T1[0] <- i * d-gap
+  POUR j = 1..n FAIRE
+    T1[j] = -1
+
+MEMO-COUT2(T0, T1, l, i, j)
+  SI l = 0 ALORS RETOURNER T0[j]
+  SI T1[j] < 0 ALORS
+    RETOURNER MIN(MEMO-COUT2(T0, T1, 0, i, j-1) + P(i,j),
+                  MEMO-COUT2(T0, T1, 1, i, j-1) + d-gap,
+                  MEMO-COUT2(T0, T1, 0, i, j) + d-gap)
+  SINON RETOURNER T1[j]
+
+COUT2(i, j)
+  T0[0..j] : tableau
+  T1[0..j] : tableau
+  T0[0] = 0
+  T1[0] = d-gap
+  POUR l = 1..j FAIRE
+    T0[l] = l * d-gap
+  POUR l = 1..i FAIRE
+    T1[l] = -1
+  POUR k = 1..i FAIRE
+    POUR l = 1..j FAIRE
+      MEMO-COUT2(T0, T1, 1, k, l)
+    MAJ-MEMO(T0, T1, k+1)
+  RETOURNER T1[j]
+\end{verbatim}
+La complexit\'e temporelle de \verb'COUT2(i,j)' est la m\^eme que
+celle de \verb'COUT1(i,j)' \emph{i.e.} $\Theta(ij)$. Cependant, si on
+note $cs(P(i,j))$ la complexit\'e spatiale de \verb'P', la
+complexit\'e spatiale de \verb'COUT2' est $\Theta(j+cs(P(i,j)))$. En
+supposant que $P(i,j)$ est asymptotiquement major\'ee par $i$, ce qui
+est une hypoth\'ese convenable avec l'hypoth\'ese faite sur la
+complexit\'e spatiale de \verb'P', \verb'COUT2' est en $O(i)$.
+
+\paragraph{Question 3.3}
+\verb'COUT2' suit le m\^eme principe que \verb'COUT1' en translatant
+le probl\`eme au sous graphe induit par le sous-ensemble de sommets
+$\big\{(k,l)\ \big|\ i\leq k\leq m\ \text{et}\ j\leq l\leq n\big\}$.
+\begin{verbatim}
+COUT2BIS(i, j, m, n)
+  T0[0..n-j] : tableau
+  T1[0..n-j] : tableau
+  T0[0] <- 0
+  T1[0] <- d-gap
+  POUR l = 1..n-j FAIRE
+    T1[l] <- l * d-gap
+  POUR k = 1..m-i FAIRE
+    POUR l = 1..n-j FAIRE
+      MEMO-COUT2(T0, T1, 1, k, l)
+    MAJ-MEMO(T0, T1, k)
+  RETOURNER T1[n-j]
+\end{verbatim}
+\paragraph{Notations}
+\begin{itemize}
+\item Pour $1\leq i\leq m-1$ et $1\leq j\leq n-1$ et deux s\'equences
+  $X$ et $Y$, on note $G_{ij}$ (resp. $H_{ij}$) le sous-graphes de
+  $G_{XY}$ induit par le sous-ensemble de sommets
+  $\big\{(k,l)\ |\ k\leq i\ \text{et}\ l\leq j\big\}$
+  (resp. $\big\{(k,l)\ |\ k\geq i\ \text{et}\ l\geq j\big\}$).
+  On remarque que l'on a $G_{ij}\cap H_{ij}=\big(\{(i,j)\},\{\}\big)$.
+\item Pour un graphe $G=(S,A)$ orient\'e, valu\'e et $s_o,s\in S$, on
+  note $d_{G_{s_0}}(s)$ le co\^ut du plus court chemin de $s_o$ \`a
+  $s$, et $c_G$ la fonction valuation de $G$.
+\item Pour simplifier les notations on pose
+  $d_{G_{XY}}=d_{{G_{XY}}_{(0,0)}}$, $d_{G_{ij}}=d_{{G_{ij}}_{(0,0)}}$
+  et $d_{H_{ij}}=d_{{H_{ij}}_{(i,j)}}$. On remarque que
+  $g(i,j)=d_{G_{i,j}}\big((i,j)\big)$ et
+  $h(i,j)=d_{H_{ij}}\big((m,n)\big)$
+\end{itemize}
+
+\paragraph{Question 3.4}
+Les cas ou $(i,j)=(0,0)$ ou $(m,n)$ sont triviaux. Soit
+$1\leq i\leq m-1$ et $1\leq j\leq n-1$ tels que qu'un plus court
+chemin de $(0,0)$ \`a $(m,n)$ dans $G_{XY}$ passe par le sommet
+$(i,j)$. Il existe $(s_{g_0}=(0,0),\ldots,s_{g_{l'}}=(i,j))$ un plus
+court chemin de $(0,0)$ \`a $(i,j)$ dans $G_{ij}$ et
+$(s_{h_0}=(i,j),\ldots,s_{h_l}=(m,n))$ un plus court chemin de $(i,j)$
+\`a $(m,n)$ dans $H_{ij}$.
+
+\input{figures/3.4.tex} 
+
+Les sommets $s_1,s_2,s_3,$ (resp. $s_1',s_2',s_3'$) repr\'esent\'es
+sur la figure ci-dessus sont les seuls pr\'edecesseurs
+(resp. succeseurs) de $(i,j)$ dans $G_{XY}$. Si on note
+$((0,0),\ldots,s,(i,j),s',\ldots,(m,n))$ un plus court chemin de
+$(0,0)$ \`a $(m,n)$ passant par $(i,j)$ dans $G_{XY}$, on a
+n\'ecessairement $s\in\{s_1,s_2,s_3\}$ et $s'\in\{s_1',s_2',s_3'\}$.
+\nopagebreak
+
+On peut alors -- en utilisant les notations introduites -- facilement
+montrer par r\'ecurrence finie sur $k\in\{0\ldots l\}$ l'\'equation
+(1). Les \'equations (2) et (3) se d\'eduisent alors simplement en
+interpr\'etant les notations.
+\begin{align}
+  d_{G_{XY}}\big(m,n\big)
+  &=d_{G_{ij}}(i,j)+\sum_{k=0}^{l-1}c_{H_{ij}}(s_{h_k},s_{h_{k+1}})\\
+  &=d_{G_{ij}}(i,j)+d_{H_{ij}}(m,n)\\
+  &=g(i,j)+h(i,j)
+\end{align}
+
+\paragraph{Question 3.5}
+Listons les complexit\'es spatiales de l'ensemble des structures de
+donn\'ees misent en jeu par \verb'SOL2(0,0,m,n)'.\\
+\begin{itemize}
+\item Structures intras\'eques :
+\begin{table*}[h]
+  \centering
+\begin{tabular}{l|c}
+  %structure&compl\'exit\'e\\
+  %\hline
+  $X2a,Y2b$&$\Theta(1)$\\
+  $Y2a,F2a$&$\Theta(n)$\\
+  $X2b,F2b$&$\Theta(m)$\\
+\end{tabular}
+\end{table*}
+\item Les appels de \verb'SOL1' sur $X2a$ et $Y2a$ avec $F2a$ ont une
+  complexit\'e spatiale en $\Theta(n)$.
+\item Les appels de \verb'SOL1' sur $X2b$ et $Y2b$ avec $F2b$ ont une
+  complexit\'e spatiale en $\Theta(m)$.
+\item Un pire appel en termes de m\'emoire de \verb'COUT2' se fait
+  pour $i=0$ et $j=\lceil\frac{m-n}{2}\rceil$. Soit une compl\'exit\'e
+  spatiale en $O\big(max(m,n)\big)$ (\'etape 1).
+\item De m\^eme pour la complexit\'e spatiale de \verb'COUT2BIS'.
+\end{itemize}
+\paragraph{}
+La complexit\'e spatiale de l'appel \verb'SOL2(0,0,m,n)' est donc bien
+en $O(m+n)$.
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "rapport"
+%%% End:

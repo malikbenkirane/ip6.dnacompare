@@ -1,0 +1,28 @@
+\begin{figure*}[h]
+\centering
+\begin{tikzpicture}
+  \SetGraphUnit{2}
+  \Vertex[L=${i,j}$]{C}
+  \NO[L=$s_2$](C){N}
+  \NOWE[L=$s_1$](C){NW}
+  \WE[L=$s_3$](C){W}
+  \SO[L=$s_2'$](C){S}
+  \SOEA[L=$s_1'$](C){SE}
+  \EA[L=$s_3'$](C){E}
+  \tikzset{EdgeStyle/.style = {->}}
+  \Edge[label=$\delta_{gap}$](N)(C)
+  \Edge[label=$\delta_{gap}$](W)(C)
+  \Edge[label=$\delta_{gap}$](C)(E)
+  \Edge[label=$\delta_{gap}$](C)(S)
+  \Edge[label=$\delta$](NW)(C)
+  \Edge[label=$\delta'$](C)(SE)
+  \draw[draw=blue] (-0.6,-3) -- (-0.6,0.6) -- (3,0.6);
+  \draw[blue] (2.5,1) node {$H_{ij}$};
+  \draw[draw=orange] (-3,-0.6) -- (0.6,-0.6) -- (0.6,3);
+  \draw[orange] (-2.5,-1) node {$G_{ij}$};
+\end{tikzpicture}
+\end{figure*}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../rapport"
+%%% End:

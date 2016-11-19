@@ -1,0 +1,17 @@
+* TODO Partie Théorique ([[file:rapport.tex][rapport.tex]])
+** DONE [[file:partie-1.tex][Partie 1]]
+** DONE [[file:partie-2.tex][Partie 2]]
++ Question [[file:partie-2.tex::\paragraph{Question%202.2}][2.2]] (facultatif)
+*** DONE Question [[file:partie-2.tex::\paragraph{Question%202.4}][2.4]] (précisions sur le calcul de complexité ?)
+*** DONE Ajouter les graphes ([[mailto:valette-manon@numericable.fr][Manon]])
+- Question [[file:partie-2.tex::\paragraph{Question%202.1}][2.1]] (Graphe valué)
+- Question [[file:partie-2.tex::\paragraph{Question%202.3}][2.3]]
+  * Dijkstra ? Bellman ? / couleurs / fichier tex <- tikz
+  * Alignement correspondant
+** DONE [[file:partie-3.tex][Partie 3]]
+*** Question 3.5 - étape 1 ?? 
+SCHEDULED: <2016-11-22 Mar 11:00>
+** TODO Préciser l'appel avant de donner sa complexité
+SCHEDULED: <2016-11-19 Sam 10:10>
+* TODO Mise en Oeuvre Java
+SCHEDULED: <2016-11-19 Sam 10:30>
