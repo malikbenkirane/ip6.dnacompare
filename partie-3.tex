@@ -63,10 +63,13 @@ COUT2(i, j)
 La complexit\'e temporelle de \verb'COUT2(i,j)' est la m\^eme que
 celle de \verb'COUT1(i,j)' \emph{i.e.} $\Theta(ij)$. Cependant, si on
 note $cs(P(i,j))$ la complexit\'e spatiale de \verb'P', la
-complexit\'e spatiale de \verb'COUT2' est $\Theta(j+cs(P(i,j)))$. En
-supposant que $P(i,j)$ est asymptotiquement major\'ee par $i$, ce qui
-est une hypoth\'ese convenable avec l'hypoth\'ese faite sur la
-complexit\'e spatiale de \verb'P', \verb'COUT2' est en $O(i)$.
+complexit\'e spatiale de \verb'COUT2(i,j)' est en
+$\Theta(j+cs(P(i,j)))$. En supposant que $cs(P(i,j))$ est
+asymptotiquement major\'ee par $\sigma^2$ avec $\sigma$ la taille de
+l'alphabet utilis\'e pour encoder nos s\'equences, et que $\sigma^2$
+est major\'e par $j$ qui est une hypoth\'ese convenable avec les
+hypoth\'ese faite sur la complexit\'e spatiale de \verb'P' et la
+taille des s\'equences \`a compar\'e, \verb'COUT2(i,j)' est en $O(j)$.
 
 \paragraph{Question 3.3}
 \verb'COUT2' suit le m\^eme principe que \verb'COUT1' en translatant

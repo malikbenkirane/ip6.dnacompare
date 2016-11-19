@@ -11,7 +11,7 @@
 ** DONE [[file:partie-3.tex][Partie 3]]
 *** Question 3.5 - étape 1 ?? 
 SCHEDULED: <2016-11-22 Mar 11:00>
-** TODO Préciser l'appel avant de donner sa complexité
+** DONE Préciser l'appel avant de donner sa complexité
 SCHEDULED: <2016-11-19 Sam 10:10>
 * TODO Mise en Oeuvre Java
 SCHEDULED: <2016-11-19 Sam 10:30>
