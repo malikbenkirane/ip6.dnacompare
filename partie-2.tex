@@ -8,7 +8,7 @@ Ci-dessous le graphe correspondant \`a l'exemple propos\'e.
 \paragraph{Question 2.3}
 Pour d\'eterminer un plus court chemin de $(0,0)$ \`a $(m,n)$ dans
 $G_{XY}$, on peut utiliser l'algorithme de Dijkstra, dont la
-complexit\'e est en $O((N+M)\log N)$ (pour un graphe \`a $N$ sommets
+complexit\'e est en $O((N)\log M)$ (pour un graphe \`a $N$ sommets
 et $M$ arcs).
 
 L'arborescence des plus courts chemins obtenue avec l'algorithme de
@@ -29,12 +29,20 @@ L'alignement optimal correspondant est donc :
 \end{table*}
 
 \paragraph{Question 2.4}
-La compl\'exit\'e spatiale ne varie pas de celle propos\'ee par
+La complexit\'e spatiale ne varie pas de celle propos\'ee par
 l'algorithme de la partie 1, soit $\Theta(nm)$, l'algorithme de
 \emph{Dijkstra} nous donne une arborescence des chemins de co\^uts
 minimum en $O(nm\log(nm))$ pour notre probl\`eme ($N=nm$ et
 $M=(n-1)(m-1)+n(m-1)+m(n-1)$ avec les notations de la question 2.3),
-soit une moins bonne compl\'exit\'e temporelle qu'\`a la partie 1.
+soit une moins bonne complexit\'e temporelle qu'\`a la partie 1.
+
+\paragraph{Remarque}
+On aurais tr\`es bien pu utiliser l'agorithme de \emph{Bellman} vu que
+le graphe est sans circuits. Ainsi on aurait une compl\'exit\'e
+temporelle en $O(nm)$ pour notre probl\`eme ($(N+M)$ pour un graphe
+\`a $N$ sommets et $M$ arcs). La complexit\'e temporelle est
+pr\'ef\'erable \`a celle de l'algorithme de Dijkstra, cependant c'est
+la m\^eme complexit\'e qu'\`a la partie 1.
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "rapport"

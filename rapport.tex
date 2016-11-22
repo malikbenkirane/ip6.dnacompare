@@ -7,6 +7,7 @@
 \usepackage{color}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tkz-graph}
+\usepackage{pgfplots}
 
 \newcommand\csection[1]{{\centering\section{#1}\par}}
 
@@ -19,9 +20,12 @@
   }
 }
 \date{Novembre 2016}
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
 
 \begin{document}
 \maketitle
+\tableofcontents
 \csection{Partie th\'eorique}
 \subsection*{Partie 1}
 \input{partie-1.tex}
@@ -30,6 +34,9 @@
 \pagebreak
 \subsection*{Partie 3}
 \input{partie-3.tex}
+\pagebreak
+\csection{Mise en oeuvre}
+\input{mise-en-oeuvre.tex}
 \end{document}
 \subsec
 %%% Local Variables:

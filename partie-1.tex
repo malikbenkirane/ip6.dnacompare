@@ -1,19 +1,19 @@
 \paragraph{Question 1.1}
-On peut \'enum\'erer tous les les sous-ensembles $C_k$ de paires
+On peut \'enum\'erer tous les sous-ensembles $C_k$ de paires
 $(x_i,y_j)$ pour deux s\'equences $X=(x_i)_{1\leq i\leq d}$ et
-$Y=(y_i)_{1\leq i\leq d}$ et tester si se sont des alignements. Il y a
-$d^2$ paires possibles, soit la paires est dans $C_k$, soit elle ne
-l'est pas, ce qui nous donne $2^{d^2}$ sous-ensembles $C_k$ à tester.
+$Y=(y_i)_{1\leq i\leq d}$ et tester si ce sont des alignements. Il y a
+$d^2$ paires possibles, soit la paire est dans $C_k$, soit elle ne
+l'est pas, ce qui nous donne $2^{d^2}$ sous-ensembles $C_k$ \`a tester.
 \paragraph{Question 1.2}
 Soit $M$ un alignement de $X$ et $Y$. Supposons que $(x_m,y_n)\not\in M$
 et qu'il existe $i\leq m, j\leq n$ tels que $(x_i,y_n)\in M$ et
 $(x_m,y_j)\in M$ (i.e. $x_m$ et $y_n$ apparaissent dans
 $M$). N\'ecessairement $i<m$ et $j<n$ puisque $x_m$ et $y_n$
 apparaissent au plus une fois. De plus comme il n'y a pas de
-croisement dans $M$ et que $i<m$, $n<j$. Contradiction.
+croisement dans $M$ et que $i<m$, on a $n<j$. Contradiction.
 \paragraph{Notation}
 Par abus, pour un alignement $M$ de deux s\'equences 
-$X=(x_i)_{0\leq i\leq m}$ et $Y=(x_j)_{0\leq j\leq n}$,
+$X=(x_i)_{1\leq i\leq m}$ et $Y=(y_j)_{1\leq j\leq n}$,
 on notera $x_k\in M$ lorsqu'il existe $j$, tel que $(x_k,y_j)\in M$,
 sym\'etriquement on pourra aussi \'ecrire $y_l\in M$, et on d\'eduit les
 n\'egations respectives.
@@ -46,7 +46,7 @@ est fini.
     + \delta_{x_my_n}.
   \end{equation*}
   Or $M^*_{m-1,n-1}$ est de co\^ut minimal pour ses sous-s\'equences
-  coresspondantes. Donc :
+  correspondantes. Donc :
   \begin{equation*}
     F(m,n) = F(m-1, n-1) + \delta_{x_my_n}.
   \end{equation*}
@@ -62,7 +62,7 @@ est fini.
   \end{equation*}
 \end{enumerate}
 \paragraph{Question 1.5}
-Afin de d'optimiser le co\^ut d'un alignement il suffit de prendre la
+Afin d'optimiser le co\^ut d'un alignement il suffit de prendre la
 plus petite valeur des trois cas de figures. Soit pour 
 $i\geq 1,\ j\geq 1$ :
 \begin{equation*}
@@ -85,13 +85,13 @@ Par sym\'etrie, $F(0,j)=j\delta_{gap}$ pour tout $j\in\{1\ldots n\}$.
 On convient que l'on dispose de la primitive \verb'MIN' renvoyant la
 valeur minimale d'un n-uplet. On convient aussi d'une primitive
 \verb'creerMatrice(N,M,V)' qui initialise une matrice de taille
-$N\times M$ \`a valeur unique \verb'V' et dont les indicices sont
+$N\times M$ \`a valeurs uniques \verb'V' et dont les indices sont
 compris entre \verb'[0,0]' et \verb'[N-1,M-1]'.
 \\\\
 L'approche, ici, est de type programmation dynamique :
-\verb'MEMO-COUT1' ne calcul \verb'C[i,j]' ($F(i,j)$) que s'il n'a pas
-\'et\'e calcul\'e pr\'ec\'edemment. \verb'COUT1' appel
-\verb'MEMO-COUT1' $m\times n$ fois soit une compl\'exit\'e temporel en
+\verb'MEMO-COUT1' ne calcule \verb'C[i,j]' ($F(i,j)$) que s'il n'a pas
+\'et\'e calcul\'e pr\'ec\'edemment. \verb'COUT1' appelle
+\verb'MEMO-COUT1' $m\times n$ fois soit une compl\'exit\'e temporelle en
 $\Theta(mn)$. Cette m\'emo\"isation nous donne une complexit\'e
 spatiale en $\Theta(mn)$.
 \\\\
@@ -118,12 +118,18 @@ COUT1(P : Matrice(m,n), d-gap)
   RETOURNER C[m,n]
 \end{verbatim}
 \pagebreak
+\paragraph{Remarque}
+L'appel r\'ecursif de \verb'MEMO-COUT1' dans la proc\'edure qui porte
+le m\^eme nom est en pratique inutile vu que l'on suppose que dans
+l'it\'eration des appels \`a cette proc\'edure (dans \verb'COUT1') que
+\verb'C[i-1,j-1]', \verb'C[i-1,j]' et \verb'C[i,j-1]' ont d\'ej\`a
+\'et\'es calcul\'es ou intilitialis\'es.
 \paragraph{Question 1.8}
-On dispose des \verb'C[i,j]' : matrice gloable des co\^uts des sous-alignements
+On dispose des \verb'C[i,j]' : matrice globale des co\^uts des sous-alignements
 optimaux $M_{i,j}^*$.
 %Le tableau \verb'X' (resp. \verb'Y') correspond \`a la s\'equence 
 %$(x_i)_{1\leq i\leq m}$ (resp. $(y_j)_{1\leq j\leq n}$).
-La liste de paire \verb'M', intialis\'ee \`a la liste vide au d\'ebut
+La liste de paires \verb'M', intialis\'ee \`a la liste vide au d\'ebut
 de l'algorithme est construite r\'ecursivement par
 \verb'REC-SOL1'. Elle correspond \`a un alignement optimal pour la
 fonction co\^ut $f$.\\\\

@@ -1,9 +1,9 @@
 \paragraph{Question 3.1}
-Si on compare deux s\'equences de longeurs $d$ identiques (pire cas),
-les algorithmes des parties pr\'ec\'edentes ont besoins \`a une
-constante pr\^et (1 octet) de $d^2$ espace m\'emoire que l'on note
-$T_{mem}$, soit $d=\sqrt{T_{mem}}$. Le tableau ci-dessous nous donne
-quelques applications num\'eriques.
+Si on compare deux s\'equences de longueurs $d$ identiques (pire cas),
+les algorithmes des parties pr\'ec\'edentes ont besoin \`a une
+constante pr\`es (1 octet) de $d^2$ espace m\'emoire que l'on note
+$T_{mem}$ (en octet), soit $T_{mem}=d^2$ ou $d=\sqrt{T_{mem}}$. Le tableau
+ci-dessous nous donne quelques applications num\'eriques.
 \begin{table*}[h]
   \centering
   \begin{tabular}{rc|c|c}
@@ -17,17 +17,17 @@ quelques applications num\'eriques.
 On convient que l'on dispose d'un algorithme \verb'P(i,j)', cachant
 une structure de donn\'ees sp\'ecifique, donnant les p\'enalit\'es de
 correspondances $\delta_{x_iy_j}$ tel qu'en complexit\'e spatiale, il
-ne d\'epend que de la taille de la taille des alphabets utilis\'es
+ne d\'epend que de la taille des alphabets utilis\'es
 pour coder les s\'equences $X=(x_i)_{0\leq i\leq m}$ et
-$Y=(y_j)_{0\leq j\leq n}$ que l'on souhaite comparer. Entre autre on
+$Y=(y_j)_{0\leq j\leq n}$ que l'on souhaite comparer. Entre autres, on
 ne stocke pas les p\'enalit\'es de correspondances nulles.\\\\
 Pour \verb'COUT2', on est toujours sur une approche type programmation
 dynamique : le calcul de $F(i,j)$ par l'algorithme auxiliaire
 \verb'MEMO-COUT2' ne se fait que s'il n'a pas d\'ej\`a \'et\'e fait,
-l'argument \verb'l' qui est pass\'ee en argument indique laquelle des
+l'argument \verb'l' qui est pass\'e en argument indique laquelle des
 deux lignes $i-1$ (\verb'l=0') ou $i$ (\verb'l=1' par exemple) est
 n\'ecessaire pour le calcul de $F(i,j)$.\\\\
-L'algorithme auxiliaire \verb'MAJ-MEMO', auqel on passe en argument
+L'algorithme auxiliaire \verb'MAJ-MEMO', auquel on passe en argument
 des r\'ef\'erences aux tableaux de m\'emo\"isation, fait la transition
 avec la paire de lignes suivante.
 \begin{verbatim}
@@ -68,12 +68,15 @@ $\Theta(j+cs(P(i,j)))$. En supposant que $cs(P(i,j))$ est
 asymptotiquement major\'ee par $\sigma^2$ avec $\sigma$ la taille de
 l'alphabet utilis\'e pour encoder nos s\'equences, et que $\sigma^2$
 est major\'e par $j$ ce qui est une hypoth\'ese convenable avec les
-hypoth\'ese faites sur la complexit\'e spatiale de \verb'P' et la
-taille des s\'equences \`a compar\'es, \verb'COUT2(i,j)' est en $O(j)$.
+hypoth\'eses faites sur la complexit\'e spatiale de \verb'P' et la
+taille des s\'equences \`a comparer, \verb'COUT2(i,j)' est en $O(j)$.
+
+\paragraph{Remarque}
+M\^eme remarque qu'\`a la question 1.7.
 
 \paragraph{Question 3.3}
 \verb'COUT2' suit le m\^eme principe que \verb'COUT1' en translatant
-le probl\`eme au sous graphe induit par le sous-ensemble de sommets
+le probl\`eme au sous-graphe induit par le sous-ensemble de sommets
 $\big\{(k,l)\ \big|\ i\leq k\leq m\ \text{et}\ j\leq l\leq n\big\}$.
 \begin{verbatim}
 COUT2BIS(i, j, m, n)
@@ -92,7 +95,7 @@ COUT2BIS(i, j, m, n)
 \paragraph{Notations}
 \begin{itemize}
 \item Pour $1\leq i\leq m-1$ et $1\leq j\leq n-1$ et deux s\'equences
-  $X$ et $Y$, on note $G_{ij}$ (resp. $H_{ij}$) le sous-graphes de
+  $X$ et $Y$, on note $G_{ij}$ (resp. $H_{ij}$) le sous-graphe de
   $G_{XY}$ induit par le sous-ensemble de sommets
   $\big\{(k,l)\ |\ k\leq i\ \text{et}\ l\leq j\big\}$
   (resp. $\big\{(k,l)\ |\ k\geq i\ \text{et}\ l\geq j\big\}$).
@@ -100,7 +103,7 @@ COUT2BIS(i, j, m, n)
 \item Pour un graphe $G=(S,A)$ orient\'e, valu\'e et $s_o,s\in S$, on
   note $d_{G_{s_0}}(s)$ le co\^ut du plus court chemin de $s_o$ \`a
   $s$, et $c_G$ la fonction valuation de $G$.
-\item Pour simplifier les notations on pose
+\item Pour simplifier les notations, on pose
   $d_{G_{XY}}=d_{{G_{XY}}_{(0,0)}}$, $d_{G_{ij}}=d_{{G_{ij}}_{(0,0)}}$
   et $d_{H_{ij}}=d_{{H_{ij}}_{(i,j)}}$. On remarque que
   $g(i,j)=d_{G_{i,j}}\big((i,j)\big)$ et
@@ -108,8 +111,8 @@ COUT2BIS(i, j, m, n)
 \end{itemize}
 
 \paragraph{Question 3.4}
-Les cas ou $(i,j)=(0,0)$ ou $(m,n)$ sont triviaux. Soit
-$1\leq i\leq m-1$ et $1\leq j\leq n-1$ tels que qu'un plus court
+Les cas o\`u $(i,j)=(0,0)$ ou $(m,n)$ sont triviaux. Soit
+$1\leq i\leq m-1$ et $1\leq j\leq n-1$ tels qu'un plus court
 chemin de $(0,0)$ \`a $(m,n)$ dans $G_{XY}$ passe par le sommet
 $(i,j)$. Il existe $(s_{g_0}=(0,0),\ldots,s_{g_{l'}}=(i,j))$ un plus
 court chemin de $(0,0)$ \`a $(i,j)$ dans $G_{ij}$ et
@@ -119,8 +122,8 @@ $(s_{h_0}=(i,j),\ldots,s_{h_l}=(m,n))$ un plus court chemin de $(i,j)$
 \input{figures/3.4.tex} 
 
 Les sommets $s_1,s_2,s_3,$ (resp. $s_1',s_2',s_3'$) repr\'esent\'es
-sur la figure ci-dessus sont les seuls pr\'edecesseurs
-(resp. succeseurs) de $(i,j)$ dans $G_{XY}$. Si on note
+sur la figure ci-dessus sont les seuls pr\'ed\'ecesseurs
+(resp. successeurs) de $(i,j)$ dans $G_{XY}$. Si on note
 $((0,0),\ldots,s,(i,j),s',\ldots,(m,n))$ un plus court chemin de
 $(0,0)$ \`a $(m,n)$ passant par $(i,j)$ dans $G_{XY}$, on a
 n\'ecessairement $s\in\{s_1,s_2,s_3\}$ et $s'\in\{s_1',s_2',s_3'\}$.
@@ -139,9 +142,9 @@ interpr\'etant les notations.
 
 \paragraph{Question 3.5}
 Listons les complexit\'es spatiales de l'ensemble des structures de
-donn\'ees misent en jeu par \verb'SOL2(0,0,m,n)'.\\
+donn\'ees mises en jeu par \verb'SOL2(0,0,m,n)'.\\
 \begin{itemize}
-\item Structures intras\'eques :
+\item Structures intrins\`eques :
 \begin{table*}[h]
   \centering
 \begin{tabular}{l|c}
