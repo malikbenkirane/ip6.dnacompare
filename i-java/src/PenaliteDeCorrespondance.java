@@ -1,8 +1,8 @@
 /** 
-    La présente classe est utilisée pour représenter
-    une pénalité dans la classe Penalites le type générique T (on
-    utilisera surement int, long, ...)  permet d'implémenter la valeur
-    de la pénalité de correspondace pour une paire donnée
+    La présente classe est utilisée pour représenter une pénalité dans
+    la classe {@link AbstractPenalites} le type générique T (on
+    utilisera surement Integer, Long, ...)  permet d'implémenter la
+    valeur de la pénalité de correspondace pour une paire donnée
 */
 public class PenaliteDeCorrespondance<T> {
 

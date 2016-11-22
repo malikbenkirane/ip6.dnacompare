@@ -1,7 +1,11 @@
 public class PenalitesInteger extends AbstractPenalites<Integer> {
     
     /**
-       cf. AbstractPenalites
+       cf. {@link AbstractPenalites}
+       @param filename nom du fichier
+       @throws FichierDePenalitesInvalide exception lorsque le fichier
+       lu est invalide 
+       (cf. {@link AbstractPenalites#lireFichierDePenalites(String)})
     */
     public PenalitesInteger(String filename)
         throws FichierDePenalitesInvalide {
@@ -26,4 +30,5 @@ public class PenalitesInteger extends AbstractPenalites<Integer> {
         //sinon on retourne penalité autre
         return penaliteAutre;
     }
+
 }

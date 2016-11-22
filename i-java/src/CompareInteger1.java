@@ -2,9 +2,9 @@ import java.util.List;
 import java.util.LinkedList;
 
 /**
-   Implémentation de AbstractCompare pour le cas Integer.  Pour les
-   algorithmes de la partie 1. On utilise directement la structure de
-   données évoquée à la partie 3.
+   Implémentation de {@link AbstractCompare} pour le cas Integer (algorithmes
+   de la partie 1). On utilise directement la structure de données
+   évoquée à la partie 3 (cf. {@link AbstractPenalites}).
 */
 public class CompareInteger1 extends AbstractCompare<Integer> {
 
@@ -26,6 +26,7 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
     }
 
     /**
+       Implémentation de MEMO-COUT1
        Méthode auxilaire pour le calcul du cout (lisibilité...)  On
        suppose que les couts ont étés calculés pour les trois cas
        (i-1,j), (i,j-1) et (i-1,j-1). (cf. méthode cout() surchargée
@@ -46,7 +47,8 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
     }
 
     /** 
-        Se référer à la documentation de {@link #AbstractCompare#cout()}
+        Implémentation de COUT1
+        Se référer à la documentation de {@link AbstractCompare#cout()}
     */
     public Integer cout() {
         couts.set(0, 0, 0);
@@ -63,6 +65,7 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
     }
 
     /**
+       Implémentation de REC-SOL1.
        Méthode auxilaire pour calculer l'alignement optimal On suppose
        qu'on a préalablement déterminé la matrice couts.
        (cf. rapport.pdf/Question 1.8)
@@ -92,6 +95,7 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
     }
 
     /**
+       Implémentation de SOL1
        Se référer à la documentation de {@link AbstractCompare#sol()}
     */
     public List<Paire> sol() {

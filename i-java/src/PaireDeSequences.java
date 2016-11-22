@@ -3,8 +3,9 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-/** Classe PaireDeSequences :
-    permet de représenter un fichier d'instance */
+/** 
+    Permet de représenter un fichier d'instance 
+*/
 public class PaireDeSequences {
 
     private String instance;
@@ -14,8 +15,12 @@ public class PaireDeSequences {
     private int n;
 
     /**
-     * PaireDeSequences initialise une instance
-     * @param filename Fichier d'instance
+       Constructeur
+       @param filename Fichier d'instance
+       @throws PaireDeSequencesInvalide lorsque le fichier n'est pas
+       trouvé, on n'arrrive pas à le lire (java.io.IOException)
+       ou que les deux première lignes n'indiquent pas la taille de la
+       séquence (java.lang.NumberFormatExcepyion)
      */
     public PaireDeSequences(String filename) throws PaireDeSequencesInvalide {
         try {

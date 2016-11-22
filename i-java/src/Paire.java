@@ -1,7 +1,7 @@
 /**
    Cette classe implémente une paire de nucléotide, elle sera
    ré-utilisée pour implémenter un alignement. On se contentera
-   d'utiliser une List de Paire.
+   d'utiliser une List de {@link Paire}.
 */
 public class Paire {
 

@@ -1,5 +1,10 @@
 import java.util.List;
 
+/**
+   Cette classe à pour but de montrer comment on utilise les
+   différentes classes implémentés pour tester les algorithmes COUT1
+   et SOL1. (cf. {@link PaireDeSequences}, {@link CompareInteger1})
+ */
 public class TestCompareInteger1 {
 
     public static void main(String[] args) {

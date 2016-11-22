@@ -2,8 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
-   Classe générique pour la manipulation de matrices (élémentaire)
-   d'éléments Comparable<T>.
+   Classe générique pour la manipulation (élémentaires) de matrices.
 */
 public class Matrice<T> {
 
@@ -32,8 +31,9 @@ public class Matrice<T> {
     
     /**
        Méthode générique pour l'accés à un élement
-       @param i numéro de la ligne
-       @param j numéro de la colonne
+       @param i indice de la ligne
+       @param j indice de la colonne
+       @return valeur à la matrice à la ligne i et la colonne j
     */
     public T get(int i, int j) {
         return matrice.get(i + j * n);

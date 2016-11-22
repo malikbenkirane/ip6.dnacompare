@@ -5,13 +5,15 @@ import java.util.List;
 */
 public abstract class AbstractCompare<T> {
 
+    /**paire de séquences à comparer*/
     protected PaireDeSequences xy;
+    /**pénalités de correspondances pour la comparaison*/
     protected AbstractPenalites<T> p;
 
     /**
        Constructeur d'une instance de cette classe abstraite
        (factorisation générique du code du constructeur des classes
-       qui héritent de cette classe)
+       qui hérites de cette classe)
        @param xy instance de la paire de séqunces à comparer
        @param p instance des pénalités de correspondances nécessaire pour la
        comparaison
@@ -49,7 +51,7 @@ public abstract class AbstractCompare<T> {
     
     /**
        Méthode générique et statique pour déterminer le min de trois
-       instance comparables de T.
+       instances comparables de T.
        @param v1 première instance
        @param v2 deuxième instance
        @param v3 troisième instance

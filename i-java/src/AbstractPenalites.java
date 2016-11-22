@@ -8,18 +8,22 @@ import java.io.IOException;
    Cette classe abstraite permet d'implémenter l'algorithme P(i,j)
    discuté à la question 3.2 de la partie théorique du
    rapport. L'implémentation est générique pour permettre le cas ou
-   les séquences deviennent trop grande et le coût ne peut plus être
-   stocké par un Integer. Pour l'instant on ne traite que les cas ou
+   les séquences deviennent trop grande et les coûts ne peuvent plus
+   être stocké par un Integer (ce qui n'arrivera surement pas dans le
+   cadre de nos test...). Pour l'instant on ne traite que les cas ou
    Integer ou Long (cf. classes PenalitesInteger et PenalitesLong).
 
-   On s'est rendus comptes que cette cette classe et la classe
+   On s'est rendus comptes que cette classe et la classe
    PenaliteDeCorrespondance peuvent être facilement implémentés depuis
    la JDK8 avec la classe Mapper... TODO
 */
 public abstract class AbstractPenalites<T> {
 
+    /**liste de pénalité de correspondances*/
     protected ArrayList<PenaliteDeCorrespondance<T>> penalites;
+    /**pénalité associée à un gap*/
     protected T penaliteGap;
+    /**pénalité pour les paires non listés dans la liste penalites*/
     protected T penaliteAutre;
     private String filename = null;
 
@@ -28,11 +32,11 @@ public abstract class AbstractPenalites<T> {
        fichier. Le format du fichier est assez simple : la première
        ligne indique la pénalité delta-gap, la deuxième la pénalité à
        attribuer si elle n'est pas listée et les lignes qui suivent
-       donne cette liste en suivant le format N1:N2:P où (N1,N2) est
+       donnent cette liste en suivant le format N1:N2:P où (N1,N2) est
        le couple de nucléotide auquel on associe une pénalité P.
        @param filename nom du fichier
-       @param type précise l'implémentation (Integer.class, Long.class
-       sont les version implémentés ici)
+       @throws FichierDePenalitesInvalide exception au cas ou le
+       fichier est invalide
     */
     public AbstractPenalites(String filename)
         throws FichierDePenalitesInvalide {
@@ -114,7 +118,6 @@ public abstract class AbstractPenalites<T> {
                                                     lirePenalite
                                                     (pc[2]));
                 penalites.add(pdc);
-                
                 ligne = b.readLine();
             }
             b.close();
@@ -128,11 +131,19 @@ public abstract class AbstractPenalites<T> {
         }
     }
 
+    /**
+       Méthode abstraite, on devra implémenter une méthode qui
+       retourne une valeur de type T pour une chaîne de caractères lue
+       @param pc chaîne de caractères lue
+       @return valeur de type T retournée
+    */
     abstract T lirePenalite(String pc); 
     /**
-       Determine la pénalité d'une paire donnée.
+       Determine la pénalité d'une paire donnée. Ceci est une méthode
+       abstraite elle devra être implémenter selon le type T
        @param n1 premiére nucléotide
        @param n2 seconde nucléotide
+       @return valeur de la pénalité
     */
     abstract T penalite(char n1, char n2);
 

@@ -1,3 +1,7 @@
+/**
+   Cette classe à pour but de donner un exemple de lecture d'un
+   fichier d'instance
+*/
 public class Afficher {
 
     public static void main(String[] args) {
