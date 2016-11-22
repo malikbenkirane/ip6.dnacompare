@@ -48,7 +48,7 @@ public class PenaliteDeCorrespondance<T> {
 
     public String toString(char n1, char n2) {
         T penalite = this.penalite(n1, n2);
-        return ((Object)penalite).toString();
+        return (penalite).toString();
     }
         
 }

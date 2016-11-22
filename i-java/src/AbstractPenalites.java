@@ -135,5 +135,9 @@ public abstract class AbstractPenalites<T> {
        @param n2 seconde nucléotide
     */
     abstract T penalite(char n1, char n2);
+
+    public T getPGap() {
+        return penaliteGap;
+    }
     
 }

@@ -59,12 +59,47 @@ public class PaireDeSequences {
         }
     }
 
+    /**
+       Permet d'obtenir un nucléotide de la séquence X d'une instance
+       @param i indice de la nucléotide
+       @return nucléotide à l'indice i de la séquence X
+    **/
+    public char getX(int i) {
+        return x.nucleotide(i-1);
+    }
+
+    /**
+       Permet d'obtenir un nucléotide de la séquence Y d'une instance
+       @param j indice de la nucléotide
+       @return nucléotide à l'indice j de la séquence Y
+    **/
+    public char getY(int j) {
+        return y.nucleotide(j-1);
+    }
+
+    /**
+       Permet de récupérer la longueur de la séquence X
+       @return longueur de la séquence X
+    */
+    public int longueurX() {
+        return x.longueur();
+    }
+
+    /**
+       Permet de récupérer la longueur de la séquence Y
+       @return longueur de la séquence Y
+    */
+    public int longueurY() {
+        return y.longueur();
+    }
+    
     public void afficher() {
         System.out.println(this + "");
     }
 
     public String toString() {
         String s = "Paire de séquence (" + instance + ")\n";
+        s += "(TailleX=" + longueurX() + ",TailleY=" + longueurY() + ")\n";
         return s + "X=(" + x + ")\nY=(" + y + ")";
     }
 

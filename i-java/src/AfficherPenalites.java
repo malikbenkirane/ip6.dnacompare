@@ -7,7 +7,11 @@ public class AfficherPenalites {
             PenalitesInteger p =
                 new PenalitesInteger(filename);
             p.afficher();
-        } catch (Exception e) {
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.err.println("usage : $ fichier-de-pénalités");
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
 

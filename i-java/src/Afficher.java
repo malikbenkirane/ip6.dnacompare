@@ -8,10 +8,13 @@ public class Afficher {
                 new PaireDeSequences(filename);
             test.afficher();
         }
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.err.println("usage : $ fichier.adn");
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 
 }

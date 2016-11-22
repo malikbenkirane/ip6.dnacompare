@@ -1,0 +1,6 @@
+# Outil spécifique à l'architecure de ce projet : Permet de voir les
+# fichiers non compilés ou les fichiers compilés n'ayant pas de source
+for f in src/*.java; do basename $f .java; done > diff1
+for f in bin/*.class; do basename $f .class; done > diff2
+diff diff1 diff2 | grep -v "^---" | grep -v "^[0-9c0-9]"
+rm -f diff1 diff2
