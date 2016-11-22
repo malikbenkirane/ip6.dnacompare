@@ -1,5 +1,7 @@
-* TODO Partie Théorique ([[file:rapport.tex][rapport.tex]])
+* [[file:sujet.pdf][SUJET]]
+* DONE Partie Théorique ([[file:rapport.tex][rapport.tex]])
 ** DONE [[file:partie-1.tex][Partie 1]]
+*** DONE Remarque Question [[file:partie-1.tex::\paragraph{Question%201.7}][1.7]] : Appel de MEMO-COUT1 dans MEMO-COUT1 inutile..
 ** DONE [[file:partie-2.tex][Partie 2]]
 + Question [[file:partie-2.tex::\paragraph{Question%202.2}][2.2]] (facultatif)
 *** DONE Question [[file:partie-2.tex::\paragraph{Question%202.4}][2.4]] (précisions sur le calcul de complexité ?)
@@ -8,10 +10,21 @@
 - Question [[file:partie-2.tex::\paragraph{Question%202.3}][2.3]]
   * Dijkstra ? Bellman ? / couleurs / fichier tex <- tikz
   * Alignement correspondant
+*** DONE Question [[file:partie-2.tex::\paragraph{Question%202.4}][2.4]] complexité temporelle de Bellman MEILLEURE
+SCHEDULED: <2016-11-21 Lun 20:10>
 ** DONE [[file:partie-3.tex][Partie 3]]
 *** Question 3.5 - étape 1 ?? 
 SCHEDULED: <2016-11-22 Mar 11:00>
 ** DONE Préciser l'appel avant de donner sa complexité
 SCHEDULED: <2016-11-19 Sam 10:10>
-* TODO Mise en Oeuvre Java
+* TODO Implémentation Java
 SCHEDULED: <2016-11-19 Sam 10:30>
+** DONE Algorithme P(i,j)
+** DONE Algorithme COUT1 & SOL1
+[[file:i-java/src/CompareInteger1.java][ComparableInteger1]]
+[[file:i-java/src/TestCompareInteger1.java][TestCompareInteger1.java]]
+** TODO Algorithmes COUT2 & COUT2BIS
+** TODO Algorithme SOL2
+* TODO Partie Expérimentale ([[file:mise-en-oeuvre.tex][mise-en-oeuvre.tex]])
+* [[file:rapport.pdf][RAPPORT]]
+* TODO Préparation soutenance
