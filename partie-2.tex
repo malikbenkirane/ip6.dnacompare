@@ -1,10 +1,10 @@
 \paragraph{Question 2.1}
 Ci-dessous le graphe correspondant \`a l'exemple propos\'e.
 \input{figures/2.1.tex}
-\pagebreak
 
 \paragraph{Question 2.2 (facultatif)}
 
+\newpage
 \paragraph{Question 2.3}
 Pour d\'eterminer un plus court chemin de $(0,0)$ \`a $(m,n)$ dans
 $G_{XY}$, on peut utiliser l'algorithme de Dijkstra, dont la
@@ -17,7 +17,7 @@ repr\'esent\'ee sur la figure ci-apr\`es par les arcs color\'es, dont
 ceux en rouge constituent un plus court chemin de $(0,0)$ \`a $(m,n)$.
 \input{figures/2.3.tex}
 
-L'alignement optimal correspondant est donc :
+L'alignement optimal correspondant (de coût $4$) est donc :
 \begin{table*}[h]
   \centering
   \begin{tabular}{c|ccccc}
@@ -39,7 +39,7 @@ soit une moins bonne complexit\'e temporelle qu'\`a la partie 1.
 \paragraph{Remarque}
 On aurais tr\`es bien pu utiliser l'agorithme de \emph{Bellman} vu que
 le graphe est sans circuits. Ainsi on aurait une compl\'exit\'e
-temporelle en $O(nm)$ pour notre probl\`eme ($(N+M)$ pour un graphe
+temporelle en $O(nm)$ pour notre probl\`eme \linebreak ($(N+M)$ pour un graphe
 \`a $N$ sommets et $M$ arcs). La complexit\'e temporelle est
 pr\'ef\'erable \`a celle de l'algorithme de Dijkstra, cependant c'est
 la m\^eme complexit\'e qu'\`a la partie 1.

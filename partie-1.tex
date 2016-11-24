@@ -32,6 +32,7 @@ $\Big\{(x_k,y_l)\in M\ |\ k\leq i,\ l\leq j\Big\}$. On convient que
 $M=M_{m,n}$. Il est \'evident que $M_{i,j}$ est un alignement de ses
 sous-s\'equences correspondantes i.e. $(x_k)_{k\leq i}$ et
 $(y_l)_{l\leq j}$.
+\pagebreak
 \paragraph{Question 1.4}
 Consid\'erons $M^*$ un alignement de co\^ut minimal des s\'equences
 $(x_i)_{1\leq i\leq m}$ et $(y_j)_{1\leq j\leq n}$. Un tel alignement
@@ -97,6 +98,7 @@ spatiale en $\Theta(mn)$.
 \\\\
 La matrice \verb'P' correspond aux p\'enalit\'es de correspondances
 $\delta_{x_iy_j}$ et \verb'd-gap' \`a la p\'enalit\'e $\delta_{gap}$.
+\pagebreak
 \begin{verbatim}
 MEMO-COUT1(C : Matrice(m,n), P : Matrice(m,n), d-gap, i, j)
   SI C[i,j] < 0 ALORS
@@ -117,7 +119,6 @@ COUT1(P : Matrice(m,n), d-gap)
       C[i,j] = MEMO-COUT1(C, P, d-gap, i, j)
   RETOURNER C[m,n]
 \end{verbatim}
-\pagebreak
 \paragraph{Remarque}
 L'appel r\'ecursif de \verb'MEMO-COUT1' dans la proc\'edure qui porte
 le m\^eme nom est en pratique inutile vu que l'on suppose que dans
