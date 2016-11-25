@@ -35,7 +35,8 @@ public class TestCompareInteger1 {
             CompareInteger1 sequenceur =
                 new CompareInteger1(instance, penalites);
 
-            List<Paire> opt = sequenceur.sol();
+            List<Paire> opt = sequenceur.sol(instance.longueurX(),
+                                             instance.longueurY());
 
             String a1 = "";
             String a2 = "";

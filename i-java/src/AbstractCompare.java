@@ -29,16 +29,24 @@ public abstract class AbstractCompare<T> {
       de la partie théorique
     */
     /**
-       Méthode abstraite qui sera surchargé pour calculé un coût
+       Méthode abstraite qui sera surchargé pour calculé le coût
+       optimal de l'alignement des s\'equences (x1,..,xi) et
+       (y1,..,yj)
+       @param i taille de la sous s\'equence (x1,..,xi)
+       @param j taille de la sous s\'equence (y1,..,yj)
        @return cout minimal d'un alignement des deux
        séequences de cette instance
     */
-    abstract T cout();
+    abstract T cout(int i,int j);
     /**
-       Méthode abstraite qui sera surchargé pour calculé un alignement
+       Méthode abstraite qui sera surchargé pour calculé le
+       sous-alignement optimal des s\'equences (x1,..,xi) et
+       (y1,..,yj)
+       @param i taille de la sous s\'equence (x1,..,xi)
+       @param j taille de la sous s\'equence (y1,..,yj)
        @return un alignement minimal de deux séquences
     */
-    abstract List<Paire> sol();
+    abstract List<Paire> sol(int i, int j);
 
     //pour se simplifier la tâche (cf. min3)...
     //ref:[[http://stackoverflow.com/questions/6452313/how-to-implement-a-generic-maxcomparable-a-comparable-b-function-in-java]]
