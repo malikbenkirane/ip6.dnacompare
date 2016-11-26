@@ -100,13 +100,15 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
     /**
        Implémentation de SOL1
        Se référer à la documentation de {@link AbstractCompare#sol(int,int)}
+        @param i cf. {@link AbstractCompare#sol(int,int)}
+        @param j cf. {@link AbstractCompare#sol(int,int)}
     */
-    public List<Paire> sol() {
+    public List<Paire> sol(int i, int j) {
         List<Paire> align = new LinkedList<Paire>();
-        int m = xy.longueurX();
-        int n = xy.longueurY();
-        cout = cout(m,n);
-        recSol(align, m, n);
+        //int m = couts.nbLignes() - 1;
+        //int n = couts.nbColonnes() - 1;
+        cout = cout(i,j);
+        recSol(align, i, j);
         return align;
     }
 
