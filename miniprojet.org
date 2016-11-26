@@ -1,4 +1,5 @@
 * [[file:sujet.pdf][SUJET]]
+* [[file:rapport.pdf][RAPPORT]]
 * DONE Partie Théorique ([[file:rapport.tex][rapport.tex]])
 ** DONE [[file:partie-1.tex][Partie 1]]
 *** DONE Remarque Question [[file:partie-1.tex::\paragraph{Question%201.7}][1.7]] : Appel de MEMO-COUT1 dans MEMO-COUT1 inutile..
@@ -13,18 +14,47 @@
 *** DONE Question [[file:partie-2.tex::\paragraph{Question%202.4}][2.4]] complexité temporelle de Bellman MEILLEURE
 SCHEDULED: <2016-11-21 Lun 20:10>
 ** DONE [[file:partie-3.tex][Partie 3]]
-*** Question 3.5 - étape 1 ?? 
-SCHEDULED: <2016-11-22 Mar 11:00>
 ** DONE Préciser l'appel avant de donner sa complexité
 SCHEDULED: <2016-11-19 Sam 10:10>
 * TODO Implémentation Java
 SCHEDULED: <2016-11-19 Sam 10:30>
+** DONE Lecture & Affichage
+[[file:i-java/src/Afficher.java][Afficher.java]]
+[[file:i-java/src/AfficherPenalites.java][AfficherPenalites.java]]
+[[file:i-java/src/PaireDeSequences.java][PaireDeSequences.java]]
+[[file:i-java/src/PaireDeSequencesInvalide.java][PaireDeSequencesInvalide.java]]
+[[file:i-java/src/FichierDePenalitesInvalide.java][FichierDePenalitesInvalide.java]]
+[[file:i-java/src/Sequence.java][Sequence.java]]
 ** DONE Algorithme P(i,j)
+[[file:i-java/src/AbstractPenalites.java][AbstractPenalites.java]]
+[[file:i-java/src/PenaliteDeCorrespondance.java][PenaliteDeCorrespondance.java]]
+[[file:i-java/src/PenalitesInteger.java][PenalitesInteger.java]]
+** DONE Outils
+[[file:i-java/src/Matrice.java][Matrice.java]]
+[[file:i-java/src/Paire.java][Paire.java]]
+** DONE [[file:i-java/src/AbstractCompare.java][AbstractCompare.java]]
 ** DONE Algorithme COUT1 & SOL1
-[[file:i-java/src/CompareInteger1.java][ComparableInteger1]]
+[[file:i-java/src/CompareInteger1.java][CompareInteger1.java]]
 [[file:i-java/src/TestCompareInteger1.java][TestCompareInteger1.java]]
-** TODO Algorithmes COUT2 & COUT2BIS
+Se basant sur les classes abstraites :
+** DONE Algorithmes COUT2 & COUT2BIS
+SCHEDULED: <2016-11-24 Jeu>
+[[file:i-java/src/CompareInteger2.java][CompareInteger2.java]]
+[[file:i-java/src/TestComapreInteger2Sujet.java][TestComapreInteger2Sujet.java]]
 ** TODO Algorithme SOL2
+SCHEDULED: <2016-11-26 Sat 19:00>
+** TODO Mettre à jout la doc
+*** TODO [[file:i-java/src/CompareInteger2.java][CompareInteger2.java]]
 * TODO Partie Expérimentale ([[file:mise-en-oeuvre.tex][mise-en-oeuvre.tex]])
-* [[file:rapport.pdf][RAPPORT]]
 * TODO Préparation soutenance
+DEADLINE: <2016-11-28 Lun>
+** TODO UML i-java
+** Modifications dans la partie théorique
+*** COUT2 
+- valeur retourné incorrecte si on met à jour le memo à l'itération k=i
+en fait dans cette version il faudrait retourner T0[j] et en fait le
+dernier appel à MAJ-MEMO est inutile !
+- pour l'initialisation : POUR l = 1..[j] FAIRE T1[l] = -1
+- faire T1[l] = MEMO-COUT2(T0, T1, 1, k, l)
+*** COUT2BIS
+troisième point de l'algorithme COUT2 à adapter ici

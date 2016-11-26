@@ -17,32 +17,33 @@ ci-dessous nous donne quelques applications num\'eriques.
 On convient que l'on dispose d'un algorithme \verb'P(i,j)', cachant
 une structure de donn\'ees sp\'ecifique, donnant les p\'enalit\'es de
 correspondances $\delta_{x_iy_j}$ tel qu'en complexit\'e spatiale, il
-ne d\'epend que de la taille des alphabets utilis\'es
-pour coder les s\'equences $X=(x_i)_{0\leq i\leq m}$ et
-$Y=(y_j)_{0\leq j\leq n}$ que l'on souhaite comparer. Entre autres, on
-ne stocke pas les p\'enalit\'es de correspondances nulles.\\\\
+ne d\'epend que de la taille des alphabets utilis\'es pour coder les
+s\'equences $X=(x_i)_{0\leq i\leq m}$ et $Y=(y_j)_{0\leq j\leq n}$ que
+l'on souhaite comparer. Entre autres, on ne stocke pas les
+p\'enalit\'es de correspondances nulles.
+\\\\
+
 Pour \verb'COUT2', on est toujours sur une approche type programmation
 dynamique : le calcul de $F(i,j)$ par l'algorithme auxiliaire
 \verb'MEMO-COUT2' ne se fait que s'il n'a pas d\'ej\`a \'et\'e fait,
-l'argument \verb'l' qui est pass\'e en argument indique laquelle des
-deux lignes $i-1$ (\verb'l=0') ou $i$ (\verb'l=1' par exemple) est
-n\'ecessaire pour le calcul de $F(i,j)$.\\\\
-L'algorithme auxiliaire \verb'MAJ-MEMO', auquel on passe en argument
-des r\'ef\'erences aux tableaux de m\'emo\"isation, fait la transition
+les deux arguments \verb'k' et \verb'l' renseignent la case pour la
+lecuture de la p\'enalit\'e de correspondance dans la structure
+derri\`ere \verb'P', cela, pour la Question 3.3.  L'algorithme
+auxiliaire \verb'MAJ-MEMO', auquel on passe en argument des
+r\'ef\'erences aux tableaux de m\'emo\"isation, fait la transition
 avec la paire de lignes suivante.
 \begin{verbatim}
-MAJ-MEMO(T0, T1, i)
+MAJ-MEMO(T0, T1, i, j)
   T0 <- T1
   T1[0] <- i * d-gap
-  POUR j = 1..n FAIRE
-    T1[j] = -1
+  POUR l = 1..j FAIRE
+    T1[l] = -1
 
-MEMO-COUT2(T0, T1, l, i, j)
-  SI l = 0 ALORS RETOURNER T0[j]
+MEMO-COUT2(T0, T1, i, j, k, l)
   SI T1[j] < 0 ALORS
-    RETOURNER MIN(MEMO-COUT2(T0, T1, 0, i, j-1) + P(i,j),
-                  MEMO-COUT2(T0, T1, 1, i, j-1) + d-gap,
-                  MEMO-COUT2(T0, T1, 0, i, j) + d-gap)
+    RETOURNER MIN(T0[j-1] + P(k,l),
+                  T1[j-1] + d-gap,
+                  T0[j] + d-gap)
   SINON RETOURNER T1[j]
 
 COUT2(i, j)
@@ -52,14 +53,15 @@ COUT2(i, j)
   T1[0] = d-gap
   POUR l = 1..j FAIRE
     T0[l] = l * d-gap
-  POUR l = 1..i FAIRE
     T1[l] = -1
   POUR k = 1..i FAIRE
     POUR l = 1..j FAIRE
-      MEMO-COUT2(T0, T1, 1, k, l)
+      T1[l] = MEMO-COUT2(T0, T1, k, l, k, l)
     MAJ-MEMO(T0, T1, k+1)
-  RETOURNER T1[j]
+  RETOURNER T0[j]
 \end{verbatim}
+\pagebreak
+
 La complexit\'e temporelle de \verb'COUT2(i,j)' est la m\^eme que
 celle de \verb'COUT1(i,j)' \emph{i.e.} $\Theta(ij)$. Cependant, si on
 note $cs(P(i,j))$ la complexit\'e spatiale de \verb'P', la
@@ -70,9 +72,6 @@ l'alphabet utilis\'e pour encoder nos s\'equences, et que $\sigma^2$
 est major\'e par $j$ ce qui est une hypoth\'ese convenable avec les
 hypoth\'eses faites sur la complexit\'e spatiale de \verb'P' et la
 taille des s\'equences \`a comparer, \verb'COUT2(i,j)' est en $O(j)$.
-
-\paragraph{Remarque}
-M\^eme remarque qu'\`a la question 1.7.
 
 \paragraph{Question 3.3}
 \verb'COUT2' suit le m\^eme principe que \verb'COUT1' en translatant
@@ -85,12 +84,13 @@ COUT2BIS(i, j, m, n)
   T0[0] <- 0
   T1[0] <- d-gap
   POUR l = 1..n-j FAIRE
-    T1[l] <- l * d-gap
+    T0[l] <- l * d-gap
+    T1[l] <- -1
   POUR k = 1..m-i FAIRE
     POUR l = 1..n-j FAIRE
-      MEMO-COUT2(T0, T1, 1, k, l)
+      T1[l] = MEMO-COUT2(T0, T1, k, l, k+i, l+j)
     MAJ-MEMO(T0, T1, k)
-  RETOURNER T1[n-j]
+  RETOURNER T0[n-j]
 \end{verbatim}
 \paragraph{Notations}
 \begin{itemize}

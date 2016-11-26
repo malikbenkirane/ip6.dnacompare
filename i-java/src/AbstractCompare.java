@@ -34,8 +34,8 @@ public abstract class AbstractCompare<T> {
        (y1,..,yj)
        @param i taille de la sous s\'equence (x1,..,xi)
        @param j taille de la sous s\'equence (y1,..,yj)
-       @return cout minimal d'un alignement des deux
-       séequences de cette instance
+       @return cout minimal d'un alignement des deux sous-séquences
+       (x1,..,xi) et (y1,..,yk) de cette instance
     */
     abstract T cout(int i,int j);
     /**

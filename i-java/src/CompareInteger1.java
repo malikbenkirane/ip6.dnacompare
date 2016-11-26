@@ -37,8 +37,9 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
     private Integer memoCout(int i, int j) {
         if ( couts.get(i,j) == null ) {
             Integer[] pre = new Integer[3];
-            pre[0] = couts.get(i-1, j-1) + p.penalite(xy.getX(i),
-                                                      xy.getY(j));
+            Integer pc = p.penalite(xy.getX(i), xy.getY(j));
+            //System.out.println(pc + "<-(" + i + "," + j + ")");
+            pre[0] = couts.get(i-1, j-1) + pc;
             pre[1] = couts.get(i, j-1) + gap; 
             pre[2] = couts.get(i-1, j) + gap;
             return AbstractCompare.<Integer>min3(pre[0], pre[1], pre[2]);
@@ -78,10 +79,11 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
     private void recSol(List<Paire> m, int i, int j) {
         if ( i == 0 || j == 0 ) return;
         Integer[] pre = new Integer[3];
-        pre[0] = couts.get(i-1, j-1) + p.penalite(xy.getX(i),
-                                                  xy.getY(j));
+        Integer pc = p.penalite(xy.getX(i), xy.getY(j));
+        pre[0] = couts.get(i-1, j-1) + pc;
         pre[1] = couts.get(i, j-1) + gap; 
         pre[2] = couts.get(i-1, j) + gap;
+        //System.out.println(pre[0] + " " + pre[1] + " " + pre[2]);
         if ( couts.get(i,j).equals(pre[0]) ) {
             m.add(0, new Paire(xy.getX(i), xy.getY(j)));
             recSol(m, i-1, j-1);
@@ -98,15 +100,13 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
     /**
        Implémentation de SOL1
        Se référer à la documentation de {@link AbstractCompare#sol(int,int)}
-        @param i cf. {@link AbstractCompare#sol(int,int)}
-        @param j cf. {@link AbstractCompare#sol(int,int)}
     */
-    public List<Paire> sol(int i, int j) {
+    public List<Paire> sol() {
         List<Paire> align = new LinkedList<Paire>();
-        //int m = couts.nbLignes() - 1;
-        //int n = couts.nbColonnes() - 1;
-        cout = cout(i,j);
-        recSol(align, i, j);
+        int m = xy.longueurX();
+        int n = xy.longueurY();
+        cout = cout(m,n);
+        recSol(align, m, n);
         return align;
     }
 
