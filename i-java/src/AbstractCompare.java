@@ -9,6 +9,8 @@ public abstract class AbstractCompare<T> {
     protected PaireDeSequences xy;
     /**pénalités de correspondances pour la comparaison*/
     protected AbstractPenalites<T> p;
+    /**valeur du cout (null s'il n'a pas été calculé au moins une fois)*/
+    protected T cout = null;
 
     /**
        Constructeur d'une instance de cette classe abstraite
@@ -68,6 +70,19 @@ public abstract class AbstractCompare<T> {
                                                               T1 v2,
                                                               T1 v3) {
         return min(min(v1, v2), min(min(v1, v3), min(v2,v3)));
+    }
+
+    /**
+       @return la valeur lisible du cout si il a été calculé
+    */
+    public String toString() {
+        if ( cout == null )
+            return "NON CALCULÉ";
+        else return cout.toString();
+    }
+
+    public T getCout() {
+        return cout;
     }
 
 }

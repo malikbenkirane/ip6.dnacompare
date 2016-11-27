@@ -4,8 +4,8 @@ import java.util.List;
    Cette classe à pour but de montrer comment on utilise les
    différentes classes implémentés pour tester les algorithmes COUT1
    et SOL1. (cf. {@link PaireDeSequences}, {@link CompareInteger1})
- */
-public class TestCompareInteger1 {
+*/
+public class TestCompareInteger2 {
 
     public static void main(String[] args) {
 
@@ -34,10 +34,10 @@ public class TestCompareInteger1 {
 
             int m = instance.longueurX();
             int n = instance.longueurY();
-            
-            CompareInteger1 sequenceur =
-                new CompareInteger1(instance, penalites, m, n);
 
+            CompareInteger2 sequenceur =
+                new CompareInteger2(instance, penalites);
+            
             List<Paire> opt = sequenceur.sol(m, n);
 
             String a1 = "";

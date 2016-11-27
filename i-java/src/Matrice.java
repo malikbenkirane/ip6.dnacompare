@@ -59,4 +59,15 @@ public class Matrice<T> {
         return m;
     }
 
+    public String toString() {
+        String s = "";
+        for ( int i = 0 ; i < n ; i++ ) {
+            for ( int j = 0 ; j < n ; j++ )
+                s += get(i,j) + " ";
+            if ( i < n ) s += "\n";
+        }
+        return s;
+    }
+                    
+
 }

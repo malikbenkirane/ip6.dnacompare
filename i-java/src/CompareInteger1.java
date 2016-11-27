@@ -10,19 +10,21 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
 
     private Matrice<Integer> couts; //memo
     private Integer gap;
-    private Integer cout = null;
 
     /**
        Construit un sequenceur
        @param xy paire de sequences à comparer
        @param p pénalités de correspondance pour la comparaison
     */
-    public CompareInteger1(PaireDeSequences xy, PenalitesInteger p) {
+    public CompareInteger1(PaireDeSequences xy, PenalitesInteger p,
+                           int i, int j) {
         super(xy, p);
-        couts = new Matrice<Integer>(xy.longueurX() + 1, //m+1 (cf. rapport)
-                                     xy.longueurY() + 1, //n+1
-                                     null);
+        couts = new Matrice<Integer>(i+1, j+1, null);
         gap = p.getPGap();
+    }
+
+    private void trace(String m) {
+        System.out.println(m);
     }
 
     /**
@@ -38,7 +40,7 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
         if ( couts.get(i,j) == null ) {
             Integer[] pre = new Integer[3];
             Integer pc = p.penalite(xy.getX(i), xy.getY(j));
-            //System.out.println(pc + "<-(" + i + "," + j + ")");
+            //trace(pc + "<-(" + i + "," + j + ")");
             pre[0] = couts.get(i-1, j-1) + pc;
             pre[1] = couts.get(i, j-1) + gap; 
             pre[2] = couts.get(i-1, j) + gap;
@@ -77,21 +79,30 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
        @param j récursif sur j
     */
     private void recSol(List<Paire> m, int i, int j) {
-        if ( i == 0 || j == 0 ) return;
+        //cas de base
+        if ( i == 0 || j == 0 ) {
+            if ( i == 0 && j != 0 ) m.add(0, new Paire('-', xy.getY(j)));
+            if ( i != 0 && j == 0 ) m.add(0, new Paire(xy.getX(i), '-'));
+            return;
+        }
+        //induction
         Integer[] pre = new Integer[3];
         Integer pc = p.penalite(xy.getX(i), xy.getY(j));
         pre[0] = couts.get(i-1, j-1) + pc;
         pre[1] = couts.get(i, j-1) + gap; 
         pre[2] = couts.get(i-1, j) + gap;
-        //System.out.println(pre[0] + " " + pre[1] + " " + pre[2]);
+        //trace(pre[0] + " " + pre[1] + " " + pre[2]);
         if ( couts.get(i,j).equals(pre[0]) ) {
+            //trace("recSol1~xi=" + xy.getX(i) + "~yj=" + xy.getY(j));
             m.add(0, new Paire(xy.getX(i), xy.getY(j)));
             recSol(m, i-1, j-1);
         } else if ( couts.get(i,j).equals(pre[1]) ) {
+            //trace("recSol1~gap~yj=" + xy.getY(j));
             m.add(0, new Paire('-', xy.getY(j)));
             recSol(m, i, j-1);
         }
         else if ( couts.get(i,j).equals(pre[2]) ) {
+            //trace("recSol1~gap~xi=" + xy.getX(i));
             m.add(0, new Paire(xy.getX(i), '-'));
             recSol(m, i-1, j);
         }
@@ -105,17 +116,9 @@ public class CompareInteger1 extends AbstractCompare<Integer> {
     */
     public List<Paire> sol(int i, int j) {
         List<Paire> align = new LinkedList<Paire>();
-        //int m = couts.nbLignes() - 1;
-        //int n = couts.nbColonnes() - 1;
         cout = cout(i,j);
         recSol(align, i, j);
         return align;
-    }
-
-    public String toString() {
-        if ( cout == null )
-            return "NON CALCULÉ";
-        return cout.toString();
     }
 
 }

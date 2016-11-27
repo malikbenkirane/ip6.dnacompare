@@ -15,27 +15,41 @@ public class PaireDeSequences {
     private int n;
 
     /**
-       Constructeur
+       Construit une paire de séquences à partir de deux chaines de caractères
+       @param sx sequence x
+       @param sy sequence y
+    */
+    public PaireDeSequences(String sx, String sy) {
+        x = new Sequence(sx);
+        y = new Sequence(sy);
+        m = x.longueur();
+        n = y.longueur();
+        instance = null;
+    }
+    
+    /**
+       Construit une paire de séquences en lisant un fichier instance
        @param filename Fichier d'instance
        @throws PaireDeSequencesInvalide lorsque le fichier n'est pas
        trouvé, on n'arrrive pas à le lire (java.io.IOException)
        ou que les deux première lignes n'indiquent pas la taille de la
        séquence (java.lang.NumberFormatExcepyion)
      */
-    public PaireDeSequences(String filename) throws PaireDeSequencesInvalide {
+    public PaireDeSequences(String filename)
+        throws PaireDeSequencesInvalide {
         try {
             BufferedReader b = new BufferedReader(new FileReader(filename));
             //on lit la taille des séquences (2 premières lignes)
             m = Integer.parseInt(b.readLine());
             n = Integer.parseInt(b.readLine());
-            //on lit la première séquence
+            //on lit la première séquence (\\s+ pour enlever les espaces)
             x = new Sequence(b.readLine().replaceAll("\\s+", ""));
             //on test si les longeurs correspondent
             if ( x.longueur() != m )
                 throw new PaireDeSequencesInvalide
                     ("La première séquence de " +
                      filename + " n'a pas la bonne longueur.");
-            //on lit la deuxième séquence
+            //on lit la deuxième séquence (\\s+ pour enlever les espaces)
             y = new Sequence(b.readLine().replaceAll("\\s+", ""));
             //on test si les longeurs correspondent
             if ( y.longueur() != n )
@@ -64,13 +78,25 @@ public class PaireDeSequences {
         }
     }
 
+    private void trace(String m) {
+        System.out.println(m);
+    }
+
     /**
        Permet d'obtenir un nucléotide de la séquence X d'une instance
        @param i indice de la nucléotide
        @return nucléotide à l'indice i de la séquence X
     **/
     public char getX(int i) {
+        if ( i == 0 ) {
+            return '-';
+        }
         return x.nucleotide(i-1);
+    }
+    //debug
+    public char getX(int i, String trace) {
+        this.trace("  ~getX~" + trace);
+        return getX(i);
     }
 
     /**
@@ -79,7 +105,31 @@ public class PaireDeSequences {
        @return nucléotide à l'indice j de la séquence Y
     **/
     public char getY(int j) {
+        if ( j == 0 ) {
+            return '-';
+        }
         return y.nucleotide(j-1);
+    }
+    //debug
+    public char getY(int j, String trace) {
+        this.trace("  ~getY~" + trace);
+        return getY(j);
+    }
+
+    /**
+       Méthode pour accéder à la séquence x
+       @return séquence x de la paire
+    */
+    public String getX() {
+        return x.toString();
+    }
+
+    /**
+       Méthode pour accéder à la séquence y
+       @return séquence y de la paire
+    */
+    public String getY() {
+        return y.toString();
     }
 
     /**
@@ -103,7 +153,8 @@ public class PaireDeSequences {
     }
 
     public String toString() {
-        String s = "Paire de séquence (" + instance + ")\n";
+        String s = "Paire de séquence ";
+        s += (instance != null)?("(" + instance + ")\n"):"\n";
         s += "(TailleX=" + longueurX() + ",TailleY=" + longueurY() + ")\n";
         return s + "X=(" + x + ")\nY=(" + y + ")";
     }
