@@ -196,6 +196,7 @@ public class CompareInteger2 extends AbstractCompare<Integer> {
                 */
                 la = compare.sol(t1, t2);
                 //trace("  ~SOL1(a)~" + la);
+                la.remove(0);
                 l.addAll(la);
                 cout += compare.getCout();
                 return;
