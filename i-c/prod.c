@@ -1,4 +1,5 @@
 #include "cout_sol_1.h"
+#include "cout_2.h"
 
 int main(int argc, char* argv[])
 {
@@ -56,10 +57,20 @@ int main(int argc, char* argv[])
 	int dgap = 2;
 	int ret = cout1(infos, c, p, dgap);
 	struct paires* listPaires = NULL;
-	printf("Valeur d'un alignement de coût minimal : %d\n", ret);
+	printf("Valeur d'un alignement de coût minimal (cout1) : %d\n", ret);
 	sol1(infos, &listPaires, c, infos.m, infos.n, p, dgap);
 	affichage_align(infos, &listPaires);
+	int ret2 = cout2(infos.m, infos.n, p, dgap);
+	printf("Valeur d'un alignement de coût minimal (cout2) : %d\n", ret2);
+	for (int i = 0; i < infos.m; i++)
+	{
+		free(p[i]);
+	}
 	free(p);
+	for (int i = 0; i < infos.m + 1; i++)
+	{
+		free(c[i]);
+	}
 	free(c);
 	return 0;
 }

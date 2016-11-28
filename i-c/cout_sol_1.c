@@ -85,17 +85,5 @@ void rec_sol1(int** c, struct paires** listPaires, int i, int j, int** p, int dg
 void sol1(struct infoInst infos, struct paires** listPaires, int** c, int m, int n, int** p, int dgap)
 {
 	rec_sol1(c, listPaires, m, n, p, dgap);
-/*	struct paires* tmp = *listPaires;
-	printf("M = {");
-	while (tmp != NULL)
-	{
-		if (!(tmp->next))
-		{
-			printf("(%c, %c)}\n", infos.x[tmp->xi - 1], infos.y[tmp->yj - 1]);
-		} else {
-			printf("(%c, %c),", infos.x[tmp->xi - 1], infos.y[tmp->yj - 1]);
-		}
-		tmp = tmp->next;
-	}*/
 }
 
